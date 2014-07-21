@@ -1,23 +1,22 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<div id="test-score-container">
+  <header id="table-header">
+    <span class="student-name">Student Name</span>
+    <span class="student-score">Student Score</span>
+  </header>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+  <form role="form" id="new-student-input" ng-submit="addStudent()">
+      <div class="input-group">
+        <input type="text" ng-model="studentToAdd.name" class="student-name" placeholder="Name" aria-label="name">
+        <input type="text" ng-model="studentToAdd.score" class="student-score" placeholder="Score" aria-label="score">
+        <span class="input-group-btn">
+          <input type="submit" class="btn btn-primary" value="Add">
+        </span>
+      </div>
+  </form>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
+  <ts-student ng-repeat="student in students"></ts-student>
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+  <footer id="special-options">
+    <a class="btn btn-danger" ng-click="removeAll()" aria-label="remove all">Remove All</a>
+  </footer>
 </div>

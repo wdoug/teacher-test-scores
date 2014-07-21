@@ -8,10 +8,27 @@
  * Controller of the teacherTestScoresApp
  */
 angular.module('teacherTestScoresApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl', [
+    '$scope',
+
+    function ($scope) {
+      $scope.studentToAdd = {name:'', score:''};
+      $scope.students = [];
+
+      $scope.addStudent = function () {
+        $scope.students.push( angular.copy($scope.studentToAdd) );
+        $scope.studentToAdd.name = '';
+        $scope.studentToAdd.score = '';
+      };
+
+      $scope.removeStudent = function (index) {
+        $scope.students.splice(index, 1);
+      };
+
+      $scope.removeAll = function () {
+        // @TODO: Prompt the user with a warning first
+        $scope.students = [];
+      };
+
+    }
+  ]);
