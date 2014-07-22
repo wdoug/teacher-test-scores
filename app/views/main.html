@@ -1,4 +1,4 @@
-<section class="container row">
+<section class="main-container row">
   <section id="test-score-container" class="col-md-8">
     <header id="table-header">
       <h3>Students</h3>
@@ -6,21 +6,45 @@
 
     <!-- @TODO: Since most of this form looks just like the student directive,
         consider combining and DRYing up code duplication-->
-    <form role="form" id="new-student-input" class="input-group" ng-submit="addStudent()">
-      <input type="text" ng-model="studentToAdd.name" class="student-name form-control" placeholder="Name" aria-label="name">
+    <form role="form" name="newStudent" id="new-student-input" class="input-group" ng-submit="newStudent.$setPristine(true) || addStudent()" novalidate>
+      <input name="studentName"
+          type="text"
+          ng-model="studentToAdd.name"
+          class="student-name form-control"
+          placeholder="Name"
+          aria-label="name"
+          aria-required="true"
+          required>
 
       <!-- @TODO: Replace weird bootstrap hacks like this with straight css -->
       <span class="input-group-btn student-input-mod"></span>
 
-      <input type="number" ng-model="studentToAdd.score" class="student-score form-control" placeholder="Score" aria-label="score">
+      <input name="studentScore"
+          type="number"
+          ng-model="studentToAdd.score"
+          class="student-score form-control"
+          placeholder="Score"
+          aria-label="score"
+          aria-required="true"
+          required>
 
       <!-- @TODO: see above comment -->
       <span class="input-group-btn student-input-mod"></span>
 
       <span class="input-group-btn">
-        <input type="submit" class="btn btn-primary modify-student" value="Add">
+        <input type="submit" class="btn btn-primary modify-student" value="Add" ng-disabled="newStudent.$invalid">
       </span>
     </form>
+    <ul class="warnings">
+      <li ng-show="newStudent.studentName.$dirty && newStudent.studentName.$invalid">
+        Invalid: Please write a student name
+      </li>
+      <li ng-show="newStudent.studentScore.$dirty && newStudent.studentScore.$invalid">
+        Invalid: Please input a number for the student score
+      </li>
+    </ul>
+
+    <hr>
 
     <ts-student ng-repeat="student in students"></ts-student>
 

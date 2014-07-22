@@ -72,7 +72,7 @@ body {
   width: 50px;
 }
 
-input.ng-invalid {
+input.ng-invalid.ng-dirty {
   border-color: red;
   box-shadow: 0 0 5px 1px red;
 }
@@ -89,12 +89,6 @@ input.ng-invalid {
 
 #test-results h2 {
   margin-top: 0;
-}
-
-#new-student-input {
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #eee;
 }
 
 #special-options {

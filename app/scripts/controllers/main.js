@@ -24,9 +24,11 @@ angular.module('teacherTestScoresApp')
         angular.forEach(students, function (student) {
           score = parseFloat(student.score);
           sum += score || 0;
-          count += 1;
 
+          // Only count actual numbers
           if ( !isNaN(score) ) {
+            count += 1;
+
             if (student.score < minScore) {
               minScore = student.score;
             }
@@ -38,7 +40,7 @@ angular.module('teacherTestScoresApp')
         $scope.avgScore = sum/count;
         $scope.minScore = minScore;
         $scope.maxScore = maxScore;
-      }
+      };
 
       $scope.studentToAdd = {name:'', score:''};
       $scope.students = testStorage.get() || [];
