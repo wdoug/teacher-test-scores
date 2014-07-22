@@ -82,3 +82,7 @@ body {
 /*
   @TODO: Clean up above css
 */
+input.ng-invalid {
+  border-color: red;
+  box-shadow: 0 0 5px 1px red;
+}

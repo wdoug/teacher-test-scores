@@ -1,4 +1,4 @@
-<div id="test-score-container">
+<section id="test-score-container">
   <header id="table-header">
     <span class="student-name">Student Name</span>
     <span class="student-score">Student Score</span>
@@ -7,7 +7,7 @@
   <form role="form" id="new-student-input" ng-submit="addStudent()">
       <div class="input-group">
         <input type="text" ng-model="studentToAdd.name" class="student-name" placeholder="Name" aria-label="name">
-        <input type="text" ng-model="studentToAdd.score" class="student-score" placeholder="Score" aria-label="score">
+        <input type="number" ng-model="studentToAdd.score" class="student-score" placeholder="Score" aria-label="score">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Add">
         </span>
@@ -19,4 +19,4 @@
   <footer id="special-options">
     <a class="btn btn-danger" ng-click="removeAll()" aria-label="remove all">Remove All</a>
   </footer>
-</div>
+</section>
