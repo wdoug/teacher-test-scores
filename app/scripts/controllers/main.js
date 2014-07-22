@@ -56,7 +56,7 @@ angular.module('teacherTestScoresApp')
       }, true);
 
       $scope.addStudent = function () {
-        $scope.students.push( angular.copy($scope.studentToAdd) );
+        $scope.students.unshift( angular.copy($scope.studentToAdd) );
         $scope.studentToAdd.name = '';
         $scope.studentToAdd.score = '';
       };
