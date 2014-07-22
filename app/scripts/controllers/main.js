@@ -13,12 +13,39 @@ angular.module('teacherTestScoresApp')
     'testStorage',
 
     function ($scope, testStorage) {
+      // Calculate  and summary values
+      function setSummaryValues(students) {
+        var sum = 0,
+            count = 0,
+            minScore = Number.POSITIVE_INFINITY,
+            maxScore = Number.NEGATIVE_INFINITY;
+
+        angular.forEach(students, function (student) {
+            sum += student.score;
+            count += 1;
+
+            if (student.score < minScore) {
+              minScore = student.score;
+            }
+            else if (student.score > maxScore) {
+              maxScore = student.score;
+            }
+        });
+        $scope.avgScore = sum/count;
+        $scope.minScore = minScore;
+        $scope.maxScore = maxScore;
+      }
+
       $scope.studentToAdd = {name:'', score:''};
       $scope.students = testStorage.get() || [];
+
+      setSummaryValues($scope.students);
 
       $scope.$watch('students', function (newValue, oldValue) {
         if (newValue !== oldValue) {
           testStorage.put($scope.students);
+
+          setSummaryValues(newValue);
         }
       }, true);
 
