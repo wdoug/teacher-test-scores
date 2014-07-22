@@ -7,23 +7,23 @@ describe('Controller: MainCtrl', function () {
 
   var MainCtrl,
     scope,
-    testStorage;
+    tsStorage;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, _testStorage_) {
-    testStorage = _testStorage_;
+  beforeEach(inject(function ($controller, $rootScope, _tsStorage_) {
+    tsStorage = _tsStorage_;
     scope = $rootScope.$new();
-    spyOn(testStorage, 'get');
-    spyOn(testStorage, 'put');
+    spyOn(tsStorage, 'get');
+    spyOn(tsStorage, 'put');
 
     MainCtrl = $controller('MainCtrl', {
       $scope: scope,
-      testStorage: testStorage
+      tsStorage: tsStorage
     });
   }));
 
-  it('should load test data from testStorage service', function () {
-    expect(testStorage.get).toHaveBeenCalled();
+  it('should load test data from tsStorage service', function () {
+    expect(tsStorage.get).toHaveBeenCalled();
   });
 
   it('should initially have an empty \'studentToAdd\'', function () {
@@ -40,16 +40,16 @@ describe('Controller: MainCtrl', function () {
     expect(scope.students[0].name).toBe('A test name');
   });
 
-  it('should persist changes to students with testStorage', function () {
+  it('should persist changes to students with tsStorage', function () {
     scope.studentToAdd = {name: 'A test name', score: 72};
 
-     // Wrapping in $apply() calls is used to make sure $watch
-     // is called with two different values.
+    // Wrapping in $apply() calls is used to make sure $watch
+    // is called with two different values.
     scope.$apply();
     scope.addStudent();
     scope.$apply();
 
-    expect(testStorage.put).toHaveBeenCalledWith(scope.students);
+    expect(tsStorage.put).toHaveBeenCalledWith(scope.students);
   });
 
   it('should reset \'studentToAdd\' after adding them the student', function () {
