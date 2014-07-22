@@ -10,10 +10,17 @@
 angular.module('teacherTestScoresApp')
   .controller('MainCtrl', [
     '$scope',
+    'testStorage',
 
-    function ($scope) {
+    function ($scope, testStorage) {
       $scope.studentToAdd = {name:'', score:''};
-      $scope.students = [];
+      $scope.students = testStorage.get() || [];
+
+      $scope.$watch('students', function (newValue, oldValue) {
+        if (newValue !== oldValue) {
+          testStorage.put($scope.students);
+        }
+      }, true);
 
       $scope.addStudent = function () {
         $scope.students.push( angular.copy($scope.studentToAdd) );
