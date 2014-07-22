@@ -2,20 +2,20 @@
 
 /**
  * @ngdoc service
- * @name teacherTestScoresApp.tsStorage
+ * @name teacherTestScoresApp.testStorage
  * @description
- * # tsStorage
+ * # testStorage
  * Service in the teacherTestScoresApp.
  */
 angular.module('teacherTestScoresApp')
-  .service('tsStorage', function tsStorage() {
+  .service('testStorage', function testStorage() {
 
     // Since there is currently only one test at any one time
-    var tsStorageId = 'teacher-test';
+    var testStorageId = 'teacher-test';
 
     return {
         get: function () {
-            return JSON.parse(localStorage.getItem(tsStorageId) || '[]');
+            return JSON.parse(localStorage.getItem(testStorageId) || '[]');
         },
         put: function (students) {
             var stringifiedData = JSON.stringify(students, function(key, val) {
@@ -24,7 +24,7 @@ angular.module('teacherTestScoresApp')
                 }
                 return val;
             });
-            localStorage.setItem(tsStorageId, stringifiedData);
+            localStorage.setItem(testStorageId, stringifiedData);
         }
     };
   });

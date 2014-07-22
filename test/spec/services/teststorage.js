@@ -1,19 +1,19 @@
 'use strict';
 
-describe('Service: tsStorage', function () {
+describe('Service: testStorage', function () {
 
   // load the service's module
   beforeEach(module('teacherTestScoresApp'));
 
   // instantiate service
-  var tsStorage;
-  beforeEach(inject(function (_tsStorage_) {
-    tsStorage = _tsStorage_;
+  var testStorage;
+  beforeEach(inject(function (_testStorage_) {
+    testStorage = _testStorage_;
   }));
 
   it('should retreive localStorage data with .get()', function () {
     spyOn(localStorage, 'getItem');
-    tsStorage.get();
+    testStorage.get();
 
     expect(localStorage.getItem).toHaveBeenCalled();
   });
@@ -21,7 +21,7 @@ describe('Service: tsStorage', function () {
   it('should update localStorage data with .put()', function () {
     spyOn(localStorage, 'setItem');
     var fakeData = [{name: 'student', score: 75}];
-    tsStorage.put(fakeData);
+    testStorage.put(fakeData);
 
     expect(localStorage.setItem).toHaveBeenCalled();
     expect(localStorage.setItem).toHaveBeenCalledWith('teacher-test', JSON.stringify(fakeData));
@@ -30,7 +30,7 @@ describe('Service: tsStorage', function () {
   it('should strip $$hashKey from data before updating with .put()', function () {
     spyOn(localStorage, 'setItem');
     var fakeData = [{name: 'student', score: 75, $$hashKey: '005'}];
-    tsStorage.put(fakeData);
+    testStorage.put(fakeData);
 
     delete fakeData[0].$$hashKey;
 
