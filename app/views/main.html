@@ -1,24 +1,33 @@
-<section id="test-score-container">
-  <header id="table-header">
-    <span class="student-name">Student Name</span>
-    <span class="student-score">Student Score</span>
-  </header>
+<section class="container row">
+  <section id="test-score-container" class="col-md-8">
+    <header id="table-header">
+      <h3>Students</h3>
+    </header>
 
-  <form role="form" id="new-student-input" ng-submit="addStudent()">
-      <div class="input-group">
-        <input type="text" ng-model="studentToAdd.name" class="student-name" placeholder="Name" aria-label="name">
-        <input type="number" ng-model="studentToAdd.score" class="student-score" placeholder="Score" aria-label="score">
-        <span class="input-group-btn">
-          <input type="submit" class="btn btn-primary" value="Add">
-        </span>
-      </div>
-  </form>
+    <!-- @TODO: Since most of this form looks just like the student directive,
+        consider combining and DRYing up code duplication-->
+    <form role="form" id="new-student-input" class="input-group" ng-submit="addStudent()">
+      <input type="text" ng-model="studentToAdd.name" class="student-name form-control" placeholder="Name" aria-label="name">
 
-  <ts-student ng-repeat="student in students"></ts-student>
+      <!-- @TODO: Replace weird bootstrap hacks like this with straight css -->
+      <span class="input-group-btn student-input-mod"></span>
 
-  <footer id="special-options">
-    <a class="btn btn-danger" ng-click="removeAll()" aria-label="remove all">Remove All</a>
-  </footer>
+      <input type="number" ng-model="studentToAdd.score" class="student-score form-control" placeholder="Score" aria-label="score">
+
+      <!-- @TODO: see above comment -->
+      <span class="input-group-btn student-input-mod"></span>
+
+      <span class="input-group-btn">
+        <input type="submit" class="btn btn-primary modify-student" value="Add">
+      </span>
+    </form>
+
+    <ts-student ng-repeat="student in students"></ts-student>
+
+    <footer id="special-options">
+      <a class="btn btn-danger" ng-click="removeAll()" aria-label="remove all">Remove All</a>
+    </footer>
+  </section>
+
+  <ts-summary class="col-md-4"></ts-summary>
 </section>
-
-<ts-summary></ts-summary>

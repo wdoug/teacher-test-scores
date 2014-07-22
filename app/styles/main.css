@@ -41,24 +41,6 @@ body {
   margin: 30px 0;
 }
 
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
-}
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
@@ -72,16 +54,24 @@ body {
   .header {
     margin-bottom: 30px;
   }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
 }
 
+#table-header h3 {
+  margin-top: 0;
+}
 
-/*
-  @TODO: Clean up above css
-*/
+.student-details {
+  margin-top: 5px;
+}
+
+.student-input-mod {
+  width: 0;
+}
+
+.modify-student {
+  width: 50px;
+}
+
 input.ng-invalid {
   border-color: red;
   box-shadow: 0 0 5px 1px red;
@@ -89,4 +79,26 @@ input.ng-invalid {
 
 .failing {
   background-color: #ff9999;
+}
+
+#test-results {
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+#test-results h2 {
+  margin-top: 0;
+}
+
+#new-student-input {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+#special-options {
+  padding: 10px 20px;
+  border-top: 1px solid #eee;
+  margin-top: 10px;
 }

@@ -70,4 +70,20 @@ describe('Controller: MainCtrl', function () {
     expect(scope.students.length).toBe(1);
     expect(scope.students[0].name).toBe('Student 2');
   });
+
+  it('should provide average, min, and max, student scores', function () {
+    scope.$apply();
+    scope.students = [{name: 'A', score: 50},
+                      {name: 'B', score: 100}];
+    scope.$apply();
+    expect(scope.avgScore).toBe(75);
+    expect(scope.minScore).toBe(50);
+    expect(scope.maxScore).toBe(100);
+
+    scope.students.push({name: 'C', score: 45});
+    scope.$apply();
+    expect(scope.avgScore).toBe(65);
+    expect(scope.minScore).toBe(45);
+    expect(scope.maxScore).toBe(100);
+  });
 });

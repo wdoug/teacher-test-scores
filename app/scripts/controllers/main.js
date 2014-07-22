@@ -13,23 +13,27 @@ angular.module('teacherTestScoresApp')
     'testStorage',
 
     function ($scope, testStorage) {
-      // Calculate  and summary values
-      function setSummaryValues(students) {
+      // Calculate and update test summary values
+      $scope.setSummaryValues = function (students) {
         var sum = 0,
             count = 0,
+            score,
             minScore = Number.POSITIVE_INFINITY,
             maxScore = Number.NEGATIVE_INFINITY;
 
         angular.forEach(students, function (student) {
-            sum += student.score;
-            count += 1;
+          score = parseFloat(student.score);
+          sum += score || 0;
+          count += 1;
 
+          if ( !isNaN(score) ) {
             if (student.score < minScore) {
               minScore = student.score;
             }
-            else if (student.score > maxScore) {
+            if (student.score > maxScore) {
               maxScore = student.score;
             }
+          }
         });
         $scope.avgScore = sum/count;
         $scope.minScore = minScore;
@@ -39,13 +43,13 @@ angular.module('teacherTestScoresApp')
       $scope.studentToAdd = {name:'', score:''};
       $scope.students = testStorage.get() || [];
 
-      setSummaryValues($scope.students);
+      $scope.setSummaryValues($scope.students);
 
       $scope.$watch('students', function (newValue, oldValue) {
         if (newValue !== oldValue) {
           testStorage.put($scope.students);
 
-          setSummaryValues(newValue);
+          $scope.setSummaryValues(newValue);
         }
       }, true);
 
