@@ -86,3 +86,7 @@ input.ng-invalid {
   border-color: red;
   box-shadow: 0 0 5px 1px red;
 }
+
+.failing {
+  background-color: #ff9999;
+}

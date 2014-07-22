@@ -1,6 +1,17 @@
 <div class="student-details input-group">
-  <input type="text" ng-model="student.name" class="student-name" placeholder="Name" aria-label="name">
-  <input type="number" ng-model="student.score" class="student-score" placeholder="Score" aria-label="score">
+  <input type="text"
+        ng-model="student.name"
+        class="student-name"
+        placeholder="Name"
+        aria-label="name">
+
+  <input type="number"
+        ng-model="student.score"
+        class="student-score"
+        ng-class="{failing: student.score < 65}"
+        placeholder="Score"
+        aria-label="score">
+
   <span class="input-group-btn">
     <button class="btn btn-danger" ng-click="removeStudent($index)" aria-label="Remove">X</button>
   </span>
