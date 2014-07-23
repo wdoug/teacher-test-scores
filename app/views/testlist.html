@@ -1,0 +1,34 @@
+<h2>Tests</h2>
+
+<h3>Add New</h3>
+<form role="form" name="newTest" class="input-group" ng-submit="addTest(testName)" novalidate>
+  <input name="testName"
+          ng-model="testName"
+          type="text"
+          class="form-control"
+          placeholder="Test Name"
+          aria-label="test name"
+          aria-required="true"
+          ng-change="addFailure = null"
+          required>
+  <span class="input-group-btn">
+    <input type="submit" class="btn btn-primary" value="Add" ng-disabled="newTest.$invalid">
+  </span>
+</form>
+
+<ul>
+  <li ng-show="addFailure">
+    We're sorry but that name is either already taken or otherwise unavailable.
+  </li>
+</ul>
+
+<hr>
+
+<ul>
+  <li ng-repeat="test in tests" class="btn-group list-space">
+    <a ng-href="#/tests/{{test}}" class="btn btn-default">{{test}}</a>
+    <span class="input-group-btn">
+      <input type="submit" class="btn btn-danger" value="X" ng-click="removeTest($index)">
+    </span>
+  </li>
+</ul>

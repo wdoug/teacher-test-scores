@@ -11,15 +11,22 @@ angular.module('teacherTestScoresApp')
   .controller('MainCtrl', [
     '$scope',
     'testStorage',
+    '$routeParams',
 
-    function ($scope, testStorage) {
+    function ($scope, testStorage, $routeParams) {
+      $scope.currentTest = $routeParams.testName;
+      $scope.studentToAdd = {name:'', score:''};
+      $scope.students = testStorage.get($scope.currentTest) || [];
+
       // Calculate and update test summary values
       $scope.setSummaryValues = function (students) {
         var sum = 0,
             count = 0,
             score,
-            minScore = Number.POSITIVE_INFINITY,
-            maxScore = Number.NEGATIVE_INFINITY;
+            // @NOTE: Originally was using Number's positive and negative infinity
+            // here, but Number.isFinite() is not well supported cross browser
+            minScore = '',
+            maxScore = '';
 
         angular.forEach(students, function (student) {
           score = parseFloat(student.score);
@@ -29,27 +36,25 @@ angular.module('teacherTestScoresApp')
           if ( !isNaN(score) ) {
             count += 1;
 
-            if (student.score < minScore) {
-              minScore = student.score;
+            if (minScore === '' || score < minScore) {
+              minScore = score;
             }
-            if (student.score > maxScore) {
-              maxScore = student.score;
+            if (maxScore === '' || score > maxScore) {
+              maxScore = score;
             }
           }
         });
-        $scope.avgScore = sum/count;
+        var avgScore = +(sum/count).toFixed(2);
+        $scope.avgScore = (isNaN(avgScore))? '' : avgScore;
         $scope.minScore = minScore;
         $scope.maxScore = maxScore;
       };
-
-      $scope.studentToAdd = {name:'', score:''};
-      $scope.students = testStorage.get() || [];
 
       $scope.setSummaryValues($scope.students);
 
       $scope.$watch('students', function (newValue, oldValue) {
         if (newValue !== oldValue) {
-          testStorage.put($scope.students);
+          testStorage.put($scope.currentTest, $scope.students);
 
           $scope.setSummaryValues(newValue);
         }

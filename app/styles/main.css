@@ -60,10 +60,6 @@ body {
   margin-top: 0;
 }
 
-.student-details {
-  margin-top: 5px;
-}
-
 .student-input-mod {
   width: 0;
 }
@@ -95,4 +91,8 @@ input.ng-invalid.ng-dirty {
   padding: 10px 20px;
   border-top: 1px solid #eee;
   margin-top: 10px;
+}
+
+.list-space {
+  margin-top: 5px;
 }

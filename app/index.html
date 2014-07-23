@@ -23,10 +23,14 @@
     <!-- Add your site or application content here -->
     <div class="container">
       <div class="header">
+        <a href="/" class="btn btn-default pull-right">Change test</a>
         <h3 class="text-muted">Test Scores</h3>
       </div>
 
-      <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
+      <!-- Add your site or application content here -->
+      <div class="container" ng-view=""></div>
+
+      <!-- <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div> -->
     </div>
 
 
@@ -54,6 +58,7 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -63,6 +68,7 @@
         <script src="scripts/directives/tsstudent.js"></script>
         <script src="scripts/services/teststorage.js"></script>
         <script src="scripts/directives/tssummary.js"></script>
+        <script src="scripts/controllers/testlist.js"></script>
         <!-- endbuild -->
 </body>
 </html>

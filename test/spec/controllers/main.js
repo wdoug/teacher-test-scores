@@ -7,7 +7,8 @@ describe('Controller: MainCtrl', function () {
 
   var MainCtrl,
     scope,
-    testStorage;
+    testStorage,
+    routeParams = {testName: 'testName'};
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, _testStorage_) {
@@ -18,7 +19,8 @@ describe('Controller: MainCtrl', function () {
 
     MainCtrl = $controller('MainCtrl', {
       $scope: scope,
-      testStorage: testStorage
+      testStorage: testStorage,
+      $routeParams : routeParams
     });
   }));
 
@@ -49,7 +51,7 @@ describe('Controller: MainCtrl', function () {
     scope.addStudent();
     scope.$apply();
 
-    expect(testStorage.put).toHaveBeenCalledWith(scope.students);
+    expect(testStorage.put).toHaveBeenCalledWith(routeParams.testName, scope.students);
   });
 
   it('should reset \'studentToAdd\' after adding them the student', function () {
@@ -66,9 +68,11 @@ describe('Controller: MainCtrl', function () {
     scope.addStudent();
     expect(scope.students.length).toBe(2);
 
+    // Since the students are added to front of array
+    // student 0 is 'Student 2'
     scope.removeStudent(0);
     expect(scope.students.length).toBe(1);
-    expect(scope.students[0].name).toBe('Student 2');
+    expect(scope.students[0].name).toBe('Student 1');
   });
 
   it('should provide average, min, and max, student scores', function () {
