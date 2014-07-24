@@ -35,8 +35,8 @@ angular.module('teacherTestScoresApp')
                     return false;
                 }
             }
-            // Add the test
-            tests.push(newTestKey);
+            // Add the test to front
+            tests.unshift(newTestKey);
             localStorage.setItem(testStorageId, JSON.stringify(tests));
             return true;
         },
