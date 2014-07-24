@@ -92,4 +92,16 @@ describe('Service: testStorage', function () {
     expect(localStorage.setItem).toHaveBeenCalled();
     expect(localStorage.setItem).toHaveBeenCalledWith(testName, JSON.stringify(fakeData));
   });
+
+  it('should remove associated test data when removing a test', function () {
+    testStorage.addTest(testName);
+    var fakeData = [{name: 'student', score: 75}];
+    testStorage.put(testName, fakeData);
+
+    testStorage.deleteTest(testName);
+
+    var testAssociatedData = JSON.parse(localStorage.getItem(testName) || '[]');
+
+    expect(testAssociatedData.length).toBe(0);
+  });
 });

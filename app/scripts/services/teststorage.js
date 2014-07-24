@@ -42,6 +42,7 @@ angular.module('teacherTestScoresApp')
                 if (testToDeleteKey === tests[i]) {
                     tests.splice(i, 1);
                     localStorage.setItem(testStorageId, JSON.stringify(tests));
+                    localStorage.removeItem(testToDeleteKey);
                     return true;
                 }
             }
