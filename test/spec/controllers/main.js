@@ -14,8 +14,8 @@ describe('Controller: MainCtrl', function () {
   beforeEach(inject(function ($controller, $rootScope, _testStorage_) {
     testStorage = _testStorage_;
     scope = $rootScope.$new();
-    spyOn(testStorage, 'get');
-    spyOn(testStorage, 'put');
+    spyOn(testStorage, 'getResults');
+    spyOn(testStorage, 'setResults');
 
     MainCtrl = $controller('MainCtrl', {
       $scope: scope,
@@ -25,7 +25,7 @@ describe('Controller: MainCtrl', function () {
   }));
 
   it('should load test data from testStorage service', function () {
-    expect(testStorage.get).toHaveBeenCalled();
+    expect(testStorage.getResults).toHaveBeenCalled();
   });
 
   it('should initially have an empty \'studentToAdd\'', function () {
@@ -51,7 +51,7 @@ describe('Controller: MainCtrl', function () {
     scope.addStudent();
     scope.$apply();
 
-    expect(testStorage.put).toHaveBeenCalledWith(routeParams.testName, scope.students);
+    expect(testStorage.setResults).toHaveBeenCalledWith(routeParams.testName, scope.students);
   });
 
   it('should reset \'studentToAdd\' after adding them the student', function () {

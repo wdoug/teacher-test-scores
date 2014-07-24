@@ -16,7 +16,7 @@ angular.module('teacherTestScoresApp')
     function ($scope, testStorage, $routeParams) {
       $scope.currentTest = $routeParams.testName;
       $scope.studentToAdd = {name:'', score:''};
-      $scope.students = testStorage.get($scope.currentTest) || [];
+      $scope.students = testStorage.getResults($scope.currentTest) || [];
 
       // Calculate and update test summary values
       $scope.setSummaryValues = function (students) {
@@ -54,7 +54,7 @@ angular.module('teacherTestScoresApp')
 
       $scope.$watch('students', function (newValue, oldValue) {
         if (newValue !== oldValue) {
-          testStorage.put($scope.currentTest, $scope.students);
+          testStorage.setResults($scope.currentTest, $scope.students);
 
           $scope.setSummaryValues(newValue);
         }

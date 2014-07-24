@@ -65,27 +65,27 @@ describe('Service: testStorage', function () {
     expect(testRemoved).toBe(false);
   });
 
-  it('should retreive test data with .get(test)', function () {
+  it('should retreive test data with .getResults(test)', function () {
     testStorage.addTest(testName);
     spyOn(localStorage, 'getItem');
-    testStorage.get(testName);
+    testStorage.getResults(testName);
 
     expect(localStorage.getItem).toHaveBeenCalledWith(testName);
   });
 
-  it('should update localStorage data with .put()', function () {
+  it('should update localStorage data with .setResults()', function () {
     spyOn(localStorage, 'setItem');
     var fakeData = [{name: 'student', score: 75}];
-    testStorage.put(testName, fakeData);
+    testStorage.setResults(testName, fakeData);
 
     expect(localStorage.setItem).toHaveBeenCalled();
     expect(localStorage.setItem).toHaveBeenCalledWith(testName, JSON.stringify(fakeData));
   });
 
-  it('should strip $$hashKey from data before updating with .put()', function () {
+  it('should strip $$hashKey from data before updating with .setResults()', function () {
     spyOn(localStorage, 'setItem');
     var fakeData = [{name: 'student', score: 75, $$hashKey: '005'}];
-    testStorage.put(testName, fakeData);
+    testStorage.setResults(testName, fakeData);
 
     delete fakeData[0].$$hashKey;
 
@@ -96,7 +96,7 @@ describe('Service: testStorage', function () {
   it('should remove associated test data when removing a test', function () {
     testStorage.addTest(testName);
     var fakeData = [{name: 'student', score: 75}];
-    testStorage.put(testName, fakeData);
+    testStorage.setResults(testName, fakeData);
 
     testStorage.deleteTest(testName);
 
