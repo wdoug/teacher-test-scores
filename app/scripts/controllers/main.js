@@ -71,8 +71,12 @@ angular.module('teacherTestScoresApp')
       };
 
       $scope.removeAll = function () {
-        // @TODO: Prompt the user with a warning first
-        $scope.students = [];
+        bootbox.confirm('Are you sure you want to remove all student test results?', function(result) {
+          if (result === true) {
+            $scope.students = [];
+            $scope.$apply();
+          }
+        });
       };
 
     }

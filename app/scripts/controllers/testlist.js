@@ -32,10 +32,15 @@ angular.module('teacherTestScoresApp')
       };
 
       $scope.removeTest = function (index) {
-        var testRemoved = testStorage.deleteTest($scope.tests[index]);
-        if (testRemoved) {
-          $scope.tests.splice(index, 1);
-        }
+        bootbox.confirm('Are you sure you want to remove this whole test' +
+              ' and all the associated results?', function(result) {
+          if (result === true) {
+            var testRemoved = testStorage.deleteTest($scope.tests[index]);
+            if (testRemoved) {
+              $scope.tests.splice(index, 1);
+            }
+          }
+        });
       };
     }
   ]);

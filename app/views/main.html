@@ -32,7 +32,7 @@
       <span class="input-group-btn student-input-mod"></span>
 
       <span class="input-group-btn">
-        <input type="submit" class="btn btn-primary modify-student" value="Add" ng-disabled="newStudent.$invalid">
+        <input type="submit" class="btn btn-primary modify-student" value="Add" ng-disabled="newStudent.$invalid" aria-label="Add student">
       </span>
     </form>
     <ul class="warnings">
@@ -53,7 +53,7 @@
     <ts-student ng-repeat="student in students"></ts-student>
 
     <footer id="special-options">
-      <a class="btn btn-danger" ng-click="removeAll()" aria-label="remove all">Remove All</a>
+      <a class="btn btn-danger" ng-click="removeAll()" aria-label="remove all" ng-disabled="students.length == 0">Remove All</a>
     </footer>
   </section>
 
