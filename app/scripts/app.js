@@ -16,7 +16,8 @@ angular
     '$routeProvider',
 
     function ($locationProvider, $routeProvider) {
-      $locationProvider.html5Mode(true);
+      // Requires backend running to have this work properly
+      //$locationProvider.html5Mode(true);
       $routeProvider
         .when('/', {
           templateUrl: 'views/testlist.html',
