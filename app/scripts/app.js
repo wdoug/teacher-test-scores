@@ -12,9 +12,11 @@ angular
     'ngRoute'
   ])
   .config([
+    '$locationProvider',
     '$routeProvider',
 
-    function ($routeProvider) {
+    function ($locationProvider, $routeProvider) {
+      $locationProvider.html5Mode(true);
       $routeProvider
         .when('/', {
           templateUrl: 'views/testlist.html',
