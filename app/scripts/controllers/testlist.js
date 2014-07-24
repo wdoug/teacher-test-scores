@@ -17,10 +17,14 @@ angular.module('teacherTestScoresApp')
       $scope.tests = testStorage.getTests();
       $scope.addFailure = false;
 
+      $scope.routeToTest = function (testName) {
+        $location.path('/tests/'+encodeURIComponent(testName));
+      };
+
       $scope.addTest = function (testName) {
         var testAdded = testStorage.addTest(testName);
         if (testAdded) {
-          $location.url('/tests/'+testName);
+          $scope.routeToTest(testName);
         }
         else {
           $scope.addFailure = true;

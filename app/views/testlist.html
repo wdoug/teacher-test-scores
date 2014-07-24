@@ -26,7 +26,7 @@
 
 <ul>
   <li ng-repeat="test in tests" class="btn-group list-space">
-    <a ng-href="#/tests/{{test}}" class="btn btn-default">{{test}}</a>
+    <a ng-click="routeToTest(test)" class="btn btn-default">{{test}}</a>
     <span class="input-group-btn">
       <input type="submit" class="btn btn-danger" value="X" ng-click="removeTest($index)">
     </span>
