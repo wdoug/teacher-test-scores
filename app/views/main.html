@@ -46,6 +46,10 @@
 
     <hr>
 
+    <div class="heads-up" ng-hide="students.length">
+      To begin, add a new student above.
+    </div>
+
     <ts-student ng-repeat="student in students"></ts-student>
 
     <footer id="special-options">

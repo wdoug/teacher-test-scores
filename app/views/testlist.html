@@ -24,6 +24,10 @@
 
 <hr>
 
+<div class="heads-up" ng-hide="tests.length">
+  To begin, add a new test above.
+</div>
+
 <ul>
   <li ng-repeat="test in tests" class="btn-group list-space">
     <a ng-click="routeToTest(test)" class="btn btn-default">{{test}}</a>

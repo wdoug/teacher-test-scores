@@ -60,6 +60,9 @@ body {
   margin-top: 0;
 }
 
+/*
+* Student styles
+*/
 .student-input-mod {
   width: 0;
 }
@@ -77,6 +80,12 @@ input.ng-invalid.ng-dirty {
   background-color: #ff9999;
 }
 
+#special-options {
+  padding: 10px 20px;
+  border-top: 1px solid #eee;
+  margin-top: 10px;
+}
+
 #test-results {
   background-color: #f4f4f4;
   border-radius: 8px;
@@ -87,12 +96,27 @@ input.ng-invalid.ng-dirty {
   margin-top: 0;
 }
 
-#special-options {
-  padding: 10px 20px;
-  border-top: 1px solid #eee;
-  margin-top: 10px;
-}
-
 .list-space {
   margin-top: 5px;
+}
+
+/*
+* Notifications and guidance
+*/
+.heads-up {
+  background-color: aliceblue;
+  padding: 20px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.warnings {
+  background-color: rgb(255, 240, 240);
+  padding: 0 25px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-weight: bold;
+}
+.warnings li {
+  padding: 5px 0 10px 0;
 }
